@@ -18,10 +18,13 @@ public class GearHolder : MonoBehaviour, IDropHandler//add as determinandas inte
     {
         if (eventData.pointerDrag != null)
         {
-            eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
-            myGear = eventData.pointerDrag.GetComponent<Gear>();
-            myGear.GetComponent<RectTransform>().SetParent(transform);
-            manager.VerificationHolders();//verifica se todos os suportes estão com engrenagens.
+            if(myGear == null) 
+            {
+                eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
+                myGear = eventData.pointerDrag.GetComponent<Gear>();
+                myGear.GetComponent<RectTransform>().SetParent(transform);
+                manager.VerificationHolders();//verifica se todos os suportes estão com engrenagens.
+            }
         }
     }
 }
